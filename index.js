@@ -45,11 +45,13 @@
 document.addEventListener("click", (e) => {
   if (e.target.matches(".drum")) {
     var buttonCharacter = e.target.innerHTML;
+    buttonAnimation(buttonCharacter);
     playSound(buttonCharacter);
   }
 });
 
 document.addEventListener("keypress", (e) => {
+  buttonAnimation(e.key);
   playSound(e.key);
 });
 
@@ -86,4 +88,12 @@ function playSound(buttonCharacter) {
     default:
       console.log("No sound");
   }
+}
+
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
